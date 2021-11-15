@@ -5,10 +5,7 @@ module.exports = {
 		extend: {
 			colors: {
 				storjBlue: "#0149FF"
-			},
-			backgroundImage: (theme) => ({
-				"world-map": "url('assets/worldMap.svg')"
-			})
+			}
 		}
 	},
 	variants: {
