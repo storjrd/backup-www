@@ -6,7 +6,7 @@ module.exports = {
 			colors: {
 				storjBlue: "#0149FF",
 				aware: "#FFEBC5",
-        darkBlue: "#091C45"
+				darkBlue: "#091C45"
 			}
 		}
 	},
