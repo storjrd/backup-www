@@ -34,7 +34,10 @@
 				</div>
 				<div class="relative overflow-none">
 					<img class="shadow-none" src="@/assets/backup1.svg" />
-					<img class="absolute top-16 left-56 h-96" src="@/assets/backup2.svg" />
+					<img
+						class="absolute top-16 left-56 h-96"
+						src="@/assets/backup2.svg"
+					/>
 				</div>
 			</div>
 			<div class="max-w-7xl mx-auto mt-8">
