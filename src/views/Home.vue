@@ -174,11 +174,11 @@
 					md:text-left
 				"
 			>
-				<h3 class="font-semibold text-base">Product</h3>
-				<div class="font-extralight space-y-3 mt-3">
-					<a class="block">Pricing</a>
-					<a class="block">How it works</a>
-					<a class="block">Why Storj DCS</a>
+				<h3 class="font-extrabold text-base">Product</h3>
+				<div class="space-y-3 mt-3 text-gray-300">
+					<a class="block" href="https://storj.io/pricing" target="_blank">Pricing</a>
+					<a class="block" href="" target="_blank">How it works</a>
+					<a class="block" href="" target="_blank">Why Storj DCS</a>
 				</div>
 			</div>
 			<div
@@ -191,12 +191,12 @@
 					md:text-left
 				"
 			>
-				<h3 class="font-semibold text-base">Resources</h3>
-				<div class="font-extralight space-y-3 mt-3">
-					<a class="block">Integreations</a>
-					<a class="block">Docs</a>
-					<a class="block">Support</a>
-					<a class="block">Forum</a>
+				<h3 class="font-extrabold text-base">Resources</h3>
+				<div class="space-y-3 mt-3 text-gray-300 mt-3">
+					<a class="block" href="" target="_blank">Integreations</a>
+					<a class="block" href="" target="_blank">Docs</a>
+					<a class="block" href="" target="_blank">Support</a>
+					<a class="block" href="" target="_blank">Forum</a>
 				</div>
 			</div>
 			<div
@@ -209,10 +209,10 @@
 					md:text-left
 				"
 			>
-				<h3 class="font-semibold text-base">Company</h3>
-				<div class="font-extralight space-y-3 mt-3">
-					<a class="block">Blog</a>
-					<a class="block">About us</a>
+				<h3 class="font-extrabold text-base">Company</h3>
+				<div class="space-y-3 mt-3 text-gray-300 mt-3">
+					<a class="block" href="" target="_blank">Blog</a>
+					<a class="block" href="" target="_blank">About us</a>
 				</div>
 			</div>
 		</div>
