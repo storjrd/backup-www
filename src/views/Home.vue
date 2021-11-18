@@ -6,7 +6,7 @@
 				version. Data and accounts will be deleted every few days.
 			</p>
 		</div>
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 mt-5">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 mt-5 py-10">
 			<div class="flex justify-between items-center">
 				<img
 					class="w-36 sm:w-40 md:w-44 lg:w-52"
@@ -53,11 +53,11 @@
 					<img src="@/assets/StorjBackupPreview.svg" />
 				</div>
 			</div>
-			<div class="max-w-7xl mx-auto mt-8">
-				<div class="w-1/4">
+			<!-- <div class="relative max-w-7xl mx-auto z-0">
+				<div class="absolute bottom-0 left-0 w-1/4 z-0 p-10">
 					<img src="@/assets/blocks.svg" />
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div
@@ -77,7 +77,7 @@
 				class="
 					w-60
 					h-auto
-					md:w-80 md:h-48
+					sm:w-80 sm:h-48
 					justify-self-center
 					md:justify-self-start
 				"
