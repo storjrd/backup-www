@@ -12,32 +12,45 @@
 					class="w-36 sm:w-40 md:w-44 lg:w-52"
 					src="@/assets/white_storj_backup.svg"
 				/>
-				<div class="text-white space-x-10 font-semibold">
+				<div class="text-white space-x-5 md:space-x-10 font-semibold">
 					<a href="#">Blog</a>
 					<a href="#">Forum</a>
 				</div>
 			</div>
-			<div class="mt-20 grid grid-cols-2 gap-4">
-				<div class="mr-28">
-					<h1 class="font-bold text-4xl text-white">
+			<div class="mt-20 grid grid-cols-1 md:grid-cols-2 md:gap-4">
+				<div class="md:mr-28">
+					<h1
+						class="
+							font-bold
+							text-4xl text-white text-center
+							md:text-left
+						"
+					>
 						<div>Decentralized</div>
 						<div>Cloud Backup</div>
 					</h1>
-					<p class="text-white font-light mt-2">
+					<p
+						class="
+							text-white
+							font-light
+							mt-2
+							text-center
+							md:text-left
+						"
+					>
 						Easily backup folders from your
 						<span class="underline">Windows</span>,
 						<span class="underline">Mac</span>, or
 						<span class="underline">Linux</span> directly to Storj
 						DCS.
 					</p>
-					<download-dropdown></download-dropdown>
+
+					<div class="flex justify-center md:justify-start">
+						<download-dropdown></download-dropdown>
+					</div>
 				</div>
-				<div class="relative overflow-none">
-					<img class="shadow-none" src="@/assets/backup1.svg" />
-					<img
-						class="absolute top-16 left-56 h-96"
-						src="@/assets/backup2.svg"
-					/>
+				<div class="mt-10 md:mt-0">
+					<img src="@/assets/StorjBackupPreview.svg" />
 				</div>
 			</div>
 			<div class="max-w-7xl mx-auto mt-8">
@@ -61,7 +74,13 @@
 	>
 		<div class="grid">
 			<iframe
-				class="w-80 h-48 justify-self-center md:justify-self-start"
+				class="
+					w-60
+					h-auto
+					md:w-80 md:h-48
+					justify-self-center
+					md:justify-self-start
+				"
 				src="https://www.youtube.com/embed/BpMbr1U6Z8I"
 				title="YouTube video player"
 				frameborder="0"
