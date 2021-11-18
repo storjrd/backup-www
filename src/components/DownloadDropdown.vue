@@ -21,7 +21,10 @@
 					sm:text-sm
 				"
 			>
-				<div class="flex space-x-2">
+				<div
+					class="flex space-x-2"
+					v-on:click="downloadFromSelected($event)"
+				>
 					<img :src="selected.src" class="w-5" />
 					<span class="block truncate">{{ selected.name }}</span>
 				</div>
@@ -72,6 +75,7 @@
 						:key="system.id"
 						:value="system"
 						v-slot="{ active, selected }"
+						v-on:click="downloadFromDropdown(system.os)"
 					>
 						<li
 							:class="[
@@ -114,20 +118,6 @@ import {
 import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
 import { CloudDownloadIcon, ChevronDownIcon } from "@heroicons/vue/outline";
 
-const systems = [
-	{
-		id: 1,
-		name: "Download for Windows",
-		src: require("@/assets/icon-windows.svg")
-	},
-	{
-		id: 2,
-		name: "Download for Linux",
-		src: require("@/assets/icon-linux.svg")
-	},
-	{ id: 3, name: "Download for iOS", src: require("@/assets/icon-apple.svg") }
-];
-
 export default defineComponent({
 	name: "DownloadDropdown",
 	components: {
@@ -142,11 +132,94 @@ export default defineComponent({
 		ChevronDownIcon
 	},
 	setup() {
-		const selected = ref(systems[0]);
+		function getOS() {
+			const userAgent = window.navigator.userAgent,
+				platform = window.navigator.platform,
+				macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"],
+				windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"],
+				iosPlatforms = ["iPhone", "iPad", "iPod"];
+			let os = null;
+
+			if (macosPlatforms.indexOf(platform) !== -1) {
+				os = "Mac OS";
+			} else if (iosPlatforms.indexOf(platform) !== -1) {
+				os = "iOS";
+			} else if (windowsPlatforms.indexOf(platform) !== -1) {
+				os = "Windows";
+			} else if (/Android/.test(userAgent)) {
+				os = "Android";
+			} else if (!os && /Linux/.test(platform)) {
+				os = "Linux";
+			}
+
+			return os;
+		}
+
+		const download = async (OSToDownload) => {
+			const data = await fetch(
+				"https://api.github.com/repos/storjrd/backup/releases/latest"
+			);
+			const response = await data.json();
+			const assets = response.assets;
+			const linux = assets[0].browser_download_url;
+			const windows = assets[1].browser_download_url;
+
+			if (OSToDownload === "Windows") {
+				await fetch(windows);
+			} else if (OSToDownload === "Linux") {
+				await fetch(linux);
+			} else if (OSToDownload === "Mac") {
+				window.open("https://github.com/storjrd/backup-www");
+			}
+		};
+
+		const downloadFromSelected = (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			download(selected.value.os);
+		};
+
+		const downloadFromDropdown = (OSToDownload) => {
+			download(OSToDownload);
+		};
+
+		const systems = [
+			{
+				id: 1,
+				name: "Download for Windows",
+				os: "Windows",
+				src: require("@/assets/icon-windows.svg")
+			},
+			{
+				id: 2,
+				name: "Download for Linux",
+				os: "Linux",
+				src: require("@/assets/icon-linux.svg")
+			},
+			{
+				id: 3,
+				name: "Download for MacOS",
+				os: "Mac",
+				src: require("@/assets/icon-apple.svg")
+			}
+		];
+
+		const OS = getOS();
+		let selected = ref(systems[0]);
+
+		if (OS === "Windows") {
+			selected = ref(systems[0]);
+		} else if (OS === "Linux") {
+			selected = ref(systems[1]);
+		} else if (OS === "Mac OS") {
+			selected = ref(systems[2]);
+		}
 
 		return {
 			systems,
-			selected
+			selected,
+			downloadFromSelected,
+			downloadFromDropdown
 		};
 	}
 });

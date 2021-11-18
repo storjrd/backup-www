@@ -227,7 +227,6 @@ export default defineComponent({
 	name: "Home",
 	components: {
 		DownloadDropdown
-	},
-	setup() {}
+	}
 });
 </script>
