@@ -165,11 +165,11 @@ export default defineComponent({
 			const windows = assets[1].browser_download_url;
 
 			if (OSToDownload === "Linux") {
-				await fetch(linux);
+				window.open(linux);
 			} else if (OSToDownload === "Mac") {
 				window.open("https://github.com/storjrd/backup");
 			} else {
-				await fetch(windows);
+				window.open(windows);
 			}
 		};
 
@@ -207,12 +207,10 @@ export default defineComponent({
 		const OS = getOS();
 		let selected = ref(systems[0]);
 
-		if (OS === "Windows") {
-			selected = ref(systems[0]);
-		} else if (OS === "Linux") {
-			selected = ref(systems[1]);
+		if (OS === "Linux") {
+			selected.value = systems[1];
 		} else if (OS === "Mac OS") {
-			selected = ref(systems[2]);
+			selected.value = systems[2];
 		}
 
 		return {
