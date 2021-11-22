@@ -164,12 +164,12 @@ export default defineComponent({
 			const linux = assets[0].browser_download_url;
 			const windows = assets[1].browser_download_url;
 
-			if (OSToDownload === "Windows") {
-				await fetch(windows);
-			} else if (OSToDownload === "Linux") {
+			if (OSToDownload === "Linux") {
 				await fetch(linux);
 			} else if (OSToDownload === "Mac") {
 				window.open("https://github.com/storjrd/backup-www");
+			} else {
+				await fetch(windows);
 			}
 		};
 
