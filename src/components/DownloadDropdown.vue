@@ -167,7 +167,7 @@ export default defineComponent({
 			if (OSToDownload === "Linux") {
 				await fetch(linux);
 			} else if (OSToDownload === "Mac") {
-				window.open("https://github.com/storjrd/backup-www");
+				window.open("https://github.com/storjrd/backup");
 			} else {
 				await fetch(windows);
 			}
