@@ -13,8 +13,8 @@
 					src="@/assets/white_storj_backup.svg"
 				/>
 				<div class="text-white space-x-5 md:space-x-10 font-semibold">
-					<a href="#">Blog</a>
-					<a href="#">Forum</a>
+					<a href="https://storj.io/blog" target="_blank">Blog</a>
+					<a href="https://forum.storj.io/" target="_blank">Forum</a>
 				</div>
 			</div>
 			<div class="mt-20 grid grid-cols-1 md:grid-cols-2 md:gap-4">
@@ -174,11 +174,23 @@
 					md:text-left
 				"
 			>
-				<h3 class="font-semibold text-base">Product</h3>
-				<div class="font-extralight space-y-3 mt-3">
-					<a class="block">Pricing</a>
-					<a class="block">How it works</a>
-					<a class="block">Why Storj DCS</a>
+				<h3 class="font-extrabold text-base">Product</h3>
+				<div class="space-y-3 mt-3 text-gray-300">
+					<a
+						class="block"
+						href="https://storj.io/pricing"
+						target="_blank"
+						>Pricing</a
+					>
+					<a
+						class="block"
+						href="https://storj.io/how-it-works"
+						target="_blank"
+						>How it works</a
+					>
+					<a class="block" href="https://storj.io/" target="_blank"
+						>Why Storj DCS</a
+					>
 				</div>
 			</div>
 			<div
@@ -191,12 +203,32 @@
 					md:text-left
 				"
 			>
-				<h3 class="font-semibold text-base">Resources</h3>
-				<div class="font-extralight space-y-3 mt-3">
-					<a class="block">Integreations</a>
-					<a class="block">Docs</a>
-					<a class="block">Support</a>
-					<a class="block">Forum</a>
+				<h3 class="font-extrabold text-base">Resources</h3>
+				<div class="space-y-3 mt-3 text-gray-300 mt-3">
+					<a
+						class="block"
+						href="https://storj.io/integrations"
+						target="_blank"
+						>Integreations</a
+					>
+					<a
+						class="block"
+						href="https://docs.storj.io/dcs/"
+						target="_blank"
+						>Docs</a
+					>
+					<a
+						class="block"
+						href="https://storj.io/contact"
+						target="_blank"
+						>Support</a
+					>
+					<a
+						class="block"
+						href="https://forum.storj.io/"
+						target="_blank"
+						>Forum</a
+					>
 				</div>
 			</div>
 			<div
@@ -209,10 +241,20 @@
 					md:text-left
 				"
 			>
-				<h3 class="font-semibold text-base">Company</h3>
-				<div class="font-extralight space-y-3 mt-3">
-					<a class="block">Blog</a>
-					<a class="block">About us</a>
+				<h3 class="font-extrabold text-base">Company</h3>
+				<div class="space-y-3 mt-3 text-gray-300 mt-3">
+					<a
+						class="block"
+						href="https://storj.io/blog"
+						target="_blank"
+						>Blog</a
+					>
+					<a
+						class="block"
+						href="https://storj.io/about"
+						target="_blank"
+						>About us</a
+					>
 				</div>
 			</div>
 		</div>
