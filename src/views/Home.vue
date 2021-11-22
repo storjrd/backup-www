@@ -209,7 +209,7 @@
 						class="block"
 						href="https://storj.io/integrations"
 						target="_blank"
-						>Integreations</a
+						>Integrations</a
 					>
 					<a
 						class="block"
