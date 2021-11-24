@@ -155,10 +155,16 @@ export default defineComponent({
 			return os;
 		}
 
-		const download = async (OSToDownload) => {
-			const data = await fetch(
+		const getUrls = async () => {
+			return await fetch(
 				"https://api.github.com/repos/storjrd/backup/releases/latest"
 			);
+		};
+
+		const urlsPromise = getUrls();
+
+		const download = async (OSToDownload) => {
+			const data = await urlsPromise;
 			const response = await data.json();
 			const assets = response.assets;
 			const linux = assets[0].browser_download_url;
