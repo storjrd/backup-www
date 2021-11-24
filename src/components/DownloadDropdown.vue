@@ -166,14 +166,16 @@ export default defineComponent({
 		const download = async (OSToDownload) => {
 			const data = await urlsPromise;
 			const response = await data.json();
+			console.log(response);
 			const assets = response.assets;
 			const linux = assets[0].browser_download_url;
-			const windows = assets[1].browser_download_url;
+			const mac = assets[1].browser_download_url;
+			const windows = assets[2].browser_download_url;
 
 			if (OSToDownload === "Linux") {
 				window.open(linux);
 			} else if (OSToDownload === "Mac") {
-				window.open("https://github.com/storjrd/backup");
+				window.open(mac);
 			} else {
 				window.open(windows);
 			}
