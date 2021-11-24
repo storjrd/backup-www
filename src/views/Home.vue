@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<div class="mt-20 grid grid-cols-1 md:grid-cols-2 md:gap-4">
-				<div class="md:mr-28">
+				<div class="md:mr-28 mt-12">
 					<h1
 						class="
 							font-bold
