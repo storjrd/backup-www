@@ -1,5 +1,5 @@
 <template>
-	<Listbox as="div" v-model="selected" class="mt-8">
+	<Listbox as="div" v-bind:value="selected" class="mt-8">
 		<div class="mt-1 relative">
 			<ListboxButton
 				class="
@@ -21,10 +21,7 @@
 					sm:text-sm
 				"
 			>
-				<div
-					class="flex space-x-2"
-					v-on:click="downloadFromSelected($event)"
-				>
+				<div class="flex space-x-2" v-on:click="selected.download">
 					<img :src="selected.src" class="w-5" />
 					<span class="block truncate">{{ selected.name }}</span>
 				</div>
@@ -72,10 +69,10 @@
 					<ListboxOption
 						as="template"
 						v-for="system in systems"
-						:key="system.id"
+						:key="system.os"
 						:value="system"
 						v-slot="{ active, selected }"
-						v-on:click="downloadFromDropdown(system.os)"
+						v-on:click="system.download"
 					>
 						<li
 							:class="[
@@ -107,7 +104,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import {
 	Listbox,
 	ListboxButton,
@@ -155,77 +152,58 @@ export default defineComponent({
 			return os;
 		}
 
-		const getUrls = async () => {
-			return await fetch(
+		const getReleases = async () => {
+			const response = await fetch(
 				"https://api.github.com/repos/storjrd/backup/releases/latest"
 			);
+
+			return response.json();
 		};
 
-		const urlsPromise = getUrls();
+		const releasesPromise = getReleases();
 
-		const download = async (OSToDownload) => {
-			const data = await urlsPromise;
-			const response = await data.json();
-			console.log(response);
-			const assets = response.assets;
-			const linux = assets[0].browser_download_url;
-			const mac = assets[1].browser_download_url;
-			const windows = assets[2].browser_download_url;
-
-			if (OSToDownload === "Linux") {
-				window.open(linux);
-			} else if (OSToDownload === "Mac") {
-				window.open(mac);
-			} else {
-				window.open(windows);
-			}
-		};
-
-		const downloadFromSelected = (e) => {
+		const download = (extension) => async (e) => {
 			e.preventDefault();
 			e.stopPropagation();
-			download(selected.value.os);
-		};
-
-		const downloadFromDropdown = (OSToDownload) => {
-			download(OSToDownload);
+			const release = (await releasesPromise).assets.find((release) =>
+				release.browser_download_url.toLowerCase().endsWith(extension)
+			);
+			window.open(release.browser_download_url);
 		};
 
 		const systems = [
 			{
-				id: 1,
 				name: "Download for Windows",
 				os: "Windows",
-				src: require("@/assets/icon-windows.svg")
+				src: require("@/assets/icon-windows.svg"),
+				download: download(".exe")
 			},
 			{
-				id: 2,
 				name: "Download for Linux",
 				os: "Linux",
-				src: require("@/assets/icon-linux.svg")
+				src: require("@/assets/icon-linux.svg"),
+				download: download(".appimage")
 			},
 			{
-				id: 3,
 				name: "Download for MacOS",
 				os: "Mac",
-				src: require("@/assets/icon-apple.svg")
+				src: require("@/assets/icon-apple.svg"),
+				download: download(".dmg")
 			}
 		];
 
 		const OS = getOS();
-		let selected = ref(systems[0]);
+		let selected = systems[0];
 
 		if (OS === "Linux") {
-			selected.value = systems[1];
+			selected = systems[1];
 		} else if (OS === "Mac OS") {
-			selected.value = systems[2];
+			selected = systems[2];
 		}
 
 		return {
 			systems,
-			selected,
-			downloadFromSelected,
-			downloadFromDropdown
+			selected
 		};
 	}
 });
