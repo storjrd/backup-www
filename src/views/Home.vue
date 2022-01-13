@@ -150,7 +150,7 @@
 					<h4 class="text-lg font-bold">Easy</h4>
 					<p class="mt-1">
 						Organize and access all your files in Windows File
-						Explorer, macOS Finder or Linux (add name) from Storj
+						Explorer, macOS Finder or Linux from Storj
 						folder.
 					</p>
 				</div>
