@@ -15,8 +15,7 @@
 					text-left
 					cursor-pointer
 					focus:outline-none
-					focus:ring-1
-					focus:ring-storjBlue
+					focus:ring-1 focus:ring-storjBlue
 					focus:border-storjBlue
 					sm:text-sm
 				"
@@ -103,7 +102,7 @@
 	</Listbox>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 import {
 	Listbox,
@@ -114,6 +113,22 @@ import {
 } from "@headlessui/vue";
 import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
 import { CloudDownloadIcon, ChevronDownIcon } from "@heroicons/vue/outline";
+
+interface System {
+	name: string;
+	os: string;
+	src: string;
+	download: (arg0: Event) => void;
+}
+
+interface Asset {
+	browser_download_url: string;
+}
+
+interface Properties {
+	systems: System[];
+	selected: System;
+}
 
 export default defineComponent({
 	name: "DownloadDropdown",
@@ -128,8 +143,8 @@ export default defineComponent({
 		CloudDownloadIcon,
 		ChevronDownIcon
 	},
-	setup() {
-		function getOS() {
+	setup(): Properties {
+		function getOS(): String | null {
 			const userAgent = window.navigator.userAgent,
 				platform = window.navigator.platform,
 				macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"],
@@ -152,7 +167,23 @@ export default defineComponent({
 			return os;
 		}
 
-		const getReleases = async () => {
+		const assertsIsAsset: (
+			valueToTest: any
+		) => asserts valueToTest is Asset[] = (valueToTest) => {
+			const allDownloadUrls = valueToTest?.every(
+				(value: any) =>
+					value instanceof Object &&
+					typeof value?.browser_download_url === "string"
+			);
+
+			if (!allDownloadUrls) {
+				throw new Error(
+					"Unable to retrieve download links from GitHub repository."
+				);
+			}
+		};
+
+		const getReleases = async (): Promise<any> => {
 			const response = await fetch(
 				"https://api.github.com/repos/storjrd/backup/releases/latest"
 			);
@@ -162,16 +193,27 @@ export default defineComponent({
 
 		const releasesPromise = getReleases();
 
-		const download = (extension) => async (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-			const release = (await releasesPromise).assets.find((release) =>
-				release.browser_download_url.toLowerCase().endsWith(extension)
-			);
-			window.open(release.browser_download_url);
-		};
+		const download =
+			(extension: string): ((e: Event) => Promise<void>) =>
+			async (e: Event): Promise<void> => {
+				e.preventDefault();
+				e.stopPropagation();
 
-		const systems = [
+				const assets = (await releasesPromise)?.assets;
+				assertsIsAsset(assets);
+
+				const release = assets.find((release: Asset) =>
+					release.browser_download_url
+						.toLowerCase()
+						.endsWith(extension)
+				);
+
+				if (release) {
+					window.open(release.browser_download_url);
+				}
+			};
+
+		const systems: System[] = [
 			{
 				name: "Download for Windows",
 				os: "Windows",
