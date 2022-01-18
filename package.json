@@ -5,7 +5,8 @@
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"format-check": "prettier --check ."
 	},
 	"dependencies": {
 		"@headlessui/vue": "^1.4.2",
