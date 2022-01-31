@@ -63,8 +63,7 @@
 	<div
 		class="
 			grid grid-cols-1
-			md:grid-cols-2
-			md:gap-4
+			md:grid-cols-2 md:gap-4
 			max-w-7xl
 			mx-auto
 			px-8
@@ -78,8 +77,7 @@
 				class="
 					w-60
 					h-auto
-					sm:w-80
-					sm:h-48
+					sm:w-80 sm:h-48
 					justify-self-center
 					md:justify-self-start
 				"

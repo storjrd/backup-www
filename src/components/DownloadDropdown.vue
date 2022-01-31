@@ -15,7 +15,8 @@
 					text-left
 					cursor-pointer
 					focus:outline-none
-					focus:ring-1 focus:ring-storjBlue
+					focus:ring-1
+					focus:ring-storjBlue
 					focus:border-storjBlue
 					sm:text-sm
 				"
