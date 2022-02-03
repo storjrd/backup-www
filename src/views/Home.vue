@@ -88,10 +88,15 @@
 				allowfullscreen
 			></iframe> -->
 			<video
-					class="w-60 sm:w-80 sm:h-48 justify-self-center md:justify-self-start"
-					controls
-					src="@/assets/Storj_backup_sign_in_video.mp4"
-				></video>
+				class="
+					w-60
+					sm:w-80 sm:h-48
+					justify-self-center
+					md:justify-self-start
+				"
+				controls
+				src="@/assets/Storj_backup_sign_in_video.mp4"
+			></video>
 			<h2
 				class="
 					font-bold
